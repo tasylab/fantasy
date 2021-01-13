@@ -1,0 +1,18 @@
+name: Coverage
+
+on: [push]
+
+jobs:
+  Coverage:
+    runs-on: ubuntu-latest
+    container:
+      image: golang:latest
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+      - name: Download and verify modules
+        run: |
+          make dep
+      - name: Coverage
+        run: |
+          make coverage
